@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="cameraview_circle_recoder_progress">#FF21C1B5</color>
+  <color name="cameraview_circle_recoder_in">#FFF0F0F0</color>
+  <color name="cameraview_circle_recoder_out">#FFD8D8D8</color>
+</resources>
