@@ -87,7 +87,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
     private VideoView mVideoView;
     private ImageView mPhoto;
     private ImageView mSwitchCamera;
-    private ImageView mFlashLamp;
+    //private ImageView mFlashLamp;
     private CaptureLayout mCaptureLayout;
     private FoucsView mFoucsView;
     private MediaPlayer mMediaPlayer;
@@ -155,9 +155,9 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
         mPhoto = (ImageView) view.findViewById(R.id.image_photo);
         mSwitchCamera = (ImageView) view.findViewById(R.id.image_switch);
         mSwitchCamera.setImageResource(iconSrc);
-        mFlashLamp = (ImageView) view.findViewById(R.id.image_flash);
-        setFlashRes();
-        mFlashLamp.setOnClickListener(new OnClickListener() {
+        //mFlashLamp = (ImageView) view.findViewById(R.id.image_flash);
+        //setFlashRes();
+        /*mFlashLamp.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 type_flash++;
@@ -165,7 +165,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
                     type_flash = TYPE_FLASH_AUTO;
                 setFlashRes();
             }
-        });
+        });*/
         mCaptureLayout = (CaptureLayout) view.findViewById(R.id.capture_layout);
         mCaptureLayout.setDuration(duration);
         mCaptureLayout.setIconSrc(iconLeft, iconRight);
@@ -183,14 +183,14 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
             @Override
             public void takePictures() {
                 mSwitchCamera.setVisibility(INVISIBLE);
-                mFlashLamp.setVisibility(INVISIBLE);
+                //mFlashLamp.setVisibility(INVISIBLE);
                 machine.capture();
             }
 
             @Override
             public void recordStart() {
                 mSwitchCamera.setVisibility(INVISIBLE);
-                mFlashLamp.setVisibility(INVISIBLE);
+                //mFlashLamp.setVisibility(INVISIBLE);
                 machine.record(mVideoView.getHolder().getSurface(), screenProp);
             }
 
@@ -198,7 +198,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
             public void recordShort(final long time) {
                 mCaptureLayout.setTextWithAnimation("录制时间过短");
                 mSwitchCamera.setVisibility(VISIBLE);
-                mFlashLamp.setVisibility(VISIBLE);
+                //mFlashLamp.setVisibility(VISIBLE);
                 postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -284,7 +284,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
         LogUtil.i("JCameraView onResume");
         resetState(TYPE_DEFAULT); //重置状态
         CameraInterface.getInstance().registerSensorManager(mContext);
-        CameraInterface.getInstance().setSwitchView(mSwitchCamera, mFlashLamp);
+        CameraInterface.getInstance().setSwitchView(mSwitchCamera/*, mFlashLamp*/);
         machine.start(mVideoView.getHolder(), screenProp);
     }
 
@@ -437,7 +437,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
                 break;
         }
         mSwitchCamera.setVisibility(VISIBLE);
-        mFlashLamp.setVisibility(VISIBLE);
+        //mFlashLamp.setVisibility(VISIBLE);
         mCaptureLayout.resetCaptureLayout();
     }
 
@@ -497,7 +497,8 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
                     mMediaPlayer.setDataSource(url);
                     mMediaPlayer.setSurface(mVideoView.getHolder().getSurface());
                     mMediaPlayer.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT);
-                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                    mMediaPlayer.setAudioStreamType(AudioManager.STREAM_SYSTEM);
+                    //((AudioManager)getContext().getSystemService(Context.AUDIO_SERVICE)).setStreamMute(AudioManager.STREAM_SYSTEM,true);
                     mMediaPlayer.setOnVideoSizeChangedListener(new MediaPlayer
                             .OnVideoSizeChangedListener() {
                         @Override
@@ -580,7 +581,7 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
         this.rightClickListener = clickListener;
     }
 
-    private void setFlashRes() {
+    /*private void setFlashRes() {
         switch (type_flash) {
             case TYPE_FLASH_AUTO:
                 mFlashLamp.setImageResource(R.drawable.ic_flash_auto);
@@ -595,5 +596,5 @@ public class JCameraView extends FrameLayout implements CameraInterface.CameraOp
                 machine.flash(Camera.Parameters.FLASH_MODE_OFF);
                 break;
         }
-    }
+    }*/
 }

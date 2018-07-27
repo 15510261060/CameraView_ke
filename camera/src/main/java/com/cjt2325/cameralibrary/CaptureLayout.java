@@ -51,8 +51,8 @@ public class CaptureLayout extends FrameLayout {
     }
 
     private CaptureButton btn_capture;      //拍照按钮
-    private TypeButton btn_confirm;         //确认按钮
-    private TypeButton btn_cancel;          //取消按钮
+    private ImageView iv_confirm;         //确认按钮
+    private ImageView iv_cancel;          //取消按钮
     private ReturnButton btn_return;        //返回按钮
     private ImageView iv_custom_left;            //左边自定义按钮
     private ImageView iv_custom_right;            //右边自定义按钮
@@ -102,8 +102,8 @@ public class CaptureLayout extends FrameLayout {
     public void initEvent() {
         //默认Typebutton为隐藏
         iv_custom_right.setVisibility(GONE);
-        btn_cancel.setVisibility(GONE);
-        btn_confirm.setVisibility(GONE);
+        iv_confirm.setVisibility(GONE);
+        iv_cancel.setVisibility(GONE);
     }
 
     public void startTypeBtnAnimator() {
@@ -115,12 +115,12 @@ public class CaptureLayout extends FrameLayout {
         if (this.iconRight != 0)
             iv_custom_right.setVisibility(GONE);
         btn_capture.setVisibility(GONE);
-        btn_cancel.setVisibility(VISIBLE);
-        btn_confirm.setVisibility(VISIBLE);
-        btn_cancel.setClickable(false);
-        btn_confirm.setClickable(false);
-        ObjectAnimator animator_cancel = ObjectAnimator.ofFloat(btn_cancel, "translationX", layout_width / 4, 0);
-        ObjectAnimator animator_confirm = ObjectAnimator.ofFloat(btn_confirm, "translationX", -layout_width / 4, 0);
+        iv_confirm.setVisibility(VISIBLE);
+        iv_cancel.setVisibility(VISIBLE);
+        iv_confirm.setClickable(false);
+        iv_cancel.setClickable(false);
+        ObjectAnimator animator_cancel = ObjectAnimator.ofFloat(iv_confirm, "translationX", layout_width / 4, 0);
+        ObjectAnimator animator_confirm = ObjectAnimator.ofFloat(iv_cancel, "translationX", -layout_width / 4, 0);
 
         AnimatorSet set = new AnimatorSet();
         set.playTogether(animator_cancel, animator_confirm);
@@ -128,8 +128,8 @@ public class CaptureLayout extends FrameLayout {
             @Override
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
-                btn_cancel.setClickable(true);
-                btn_confirm.setClickable(true);
+                iv_cancel.setClickable(true);
+                iv_confirm.setClickable(true);
             }
         });
         set.setDuration(200);
@@ -143,6 +143,7 @@ public class CaptureLayout extends FrameLayout {
         btn_capture = new CaptureButton(getContext(), button_size);
         LayoutParams btn_capture_param = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
         btn_capture_param.gravity = Gravity.CENTER;
+        btn_capture_param.setMargins(0, 20, 0, 0);
         btn_capture.setLayoutParams(btn_capture_param);
         btn_capture.setCaptureLisenter(new CaptureListener() {
             @Override
@@ -193,12 +194,13 @@ public class CaptureLayout extends FrameLayout {
         });
 
         //取消按钮
-        btn_cancel = new TypeButton(getContext(), TypeButton.TYPE_CANCEL, button_size);
-        final LayoutParams btn_cancel_param = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        iv_cancel = new ImageView(getContext());
+        final LayoutParams btn_cancel_param = new LayoutParams((int) (button_size / 1.5), (int) (button_size / 1.5));
         btn_cancel_param.gravity = Gravity.CENTER_VERTICAL;
-        btn_cancel_param.setMargins((layout_width / 4) - button_size / 2, 0, 0, 0);
-        btn_cancel.setLayoutParams(btn_cancel_param);
-        btn_cancel.setOnClickListener(new OnClickListener() {
+        btn_cancel_param.setMargins(layout_width / 5, 0, 0, 0);
+        iv_cancel.setLayoutParams(btn_cancel_param);
+        iv_cancel.setImageResource(R.drawable.ic_camera_cancel);
+        iv_cancel.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (typeLisenter != null) {
@@ -210,12 +212,13 @@ public class CaptureLayout extends FrameLayout {
         });
 
         //确认按钮
-        btn_confirm = new TypeButton(getContext(), TypeButton.TYPE_CONFIRM, button_size);
-        LayoutParams btn_confirm_param = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
+        iv_confirm = new ImageView(getContext());
+        LayoutParams btn_confirm_param = new LayoutParams((int) (button_size / 1.5), (int) (button_size / 1.5));
         btn_confirm_param.gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
-        btn_confirm_param.setMargins(0, 0, (layout_width / 4) - button_size / 2, 0);
-        btn_confirm.setLayoutParams(btn_confirm_param);
-        btn_confirm.setOnClickListener(new OnClickListener() {
+        btn_confirm_param.setMargins(0, 0, layout_width / 5, 0);
+        iv_confirm.setLayoutParams(btn_confirm_param);
+        iv_confirm.setImageResource(R.drawable.ic_camera_confirm);
+        iv_confirm.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (typeLisenter != null) {
@@ -242,9 +245,9 @@ public class CaptureLayout extends FrameLayout {
         });
         //左边自定义按钮
         iv_custom_left = new ImageView(getContext());
-        LayoutParams iv_custom_param_left = new LayoutParams((int) (button_size / 2.5f), (int) (button_size / 2.5f));
+        LayoutParams iv_custom_param_left = new LayoutParams((int) (button_size / 3f), (int) (button_size / 3f));
         iv_custom_param_left.gravity = Gravity.CENTER_VERTICAL;
-        iv_custom_param_left.setMargins(layout_width / 6, 0, 0, 0);
+        iv_custom_param_left.setMargins(layout_width / 6, 20, 0, 0);
         iv_custom_left.setLayoutParams(iv_custom_param_left);
         iv_custom_left.setOnClickListener(new OnClickListener() {
             @Override
@@ -280,8 +283,8 @@ public class CaptureLayout extends FrameLayout {
         txt_tip.setLayoutParams(txt_param);
 
         this.addView(btn_capture);
-        this.addView(btn_cancel);
-        this.addView(btn_confirm);
+        this.addView(iv_cancel);
+        this.addView(iv_confirm);
         this.addView(btn_return);
         this.addView(iv_custom_left);
         this.addView(iv_custom_right);
@@ -294,8 +297,8 @@ public class CaptureLayout extends FrameLayout {
      **************************************************/
     public void resetCaptureLayout() {
         btn_capture.resetState();
-        btn_cancel.setVisibility(GONE);
-        btn_confirm.setVisibility(GONE);
+        iv_cancel.setVisibility(GONE);
+        iv_confirm.setVisibility(GONE);
         btn_capture.setVisibility(VISIBLE);
         if (this.iconLeft != 0)
             iv_custom_left.setVisibility(VISIBLE);

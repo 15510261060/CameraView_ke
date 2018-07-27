@@ -80,6 +80,7 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onClick() {
                 CameraActivity.this.finish();
+              overridePendingTransition(R.anim.anim_tab_pay_close,R.anim.anim_tab_pay_close);
             }
         });
         jCameraView.setRightClickListener(new ClickListener() {

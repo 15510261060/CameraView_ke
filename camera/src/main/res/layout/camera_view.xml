@@ -34,13 +34,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_flash_on"/>
+            android:src="@drawable/ic_flash_on"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/image_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_margin="25dp"
             android:src="@drawable/ic_camera"/>
 
     </LinearLayout>

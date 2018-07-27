@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
                     ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager
                             .PERMISSION_GRANTED) {
                 startActivityForResult(new Intent(MainActivity.this, CameraActivity.class), 100);
+                overridePendingTransition(R.anim.anim_tab_pay_open, android.R.anim.fade_out);
             } else {
                 //不具有获取权限，需要进行权限申请
                 ActivityCompat.requestPermissions(MainActivity.this, new String[]{
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             startActivityForResult(new Intent(MainActivity.this, CameraActivity.class), 100);
+            overridePendingTransition(R.anim.anim_tab_pay_open, android.R.anim.fade_out);
         }
     }
 

@@ -82,7 +82,7 @@ public class CameraInterface implements Camera.PreviewCallback {
     private ErrorListener errorLisenter;
 
     private ImageView mSwitchView;
-    private ImageView mFlashLamp;
+    //private ImageView mFlashLamp;
 
     private int preview_width;
     private int preview_height;
@@ -111,9 +111,9 @@ public class CameraInterface implements Camera.PreviewCallback {
         return mCameraInterface;
     }
 
-    public void setSwitchView(ImageView mSwitchView, ImageView mFlashLamp) {
+    public void setSwitchView(ImageView mSwitchView/*, ImageView mFlashLamp*/) {
         this.mSwitchView = mSwitchView;
-        this.mFlashLamp = mFlashLamp;
+        //this.mFlashLamp = mFlashLamp;
         if (mSwitchView != null) {
             cameraAngle = CameraParamUtil.getInstance().getCameraDisplayOrientation(mSwitchView.getContext(),
                     SELECTED_CAMERA);
@@ -189,9 +189,9 @@ public class CameraInterface implements Camera.PreviewCallback {
                     break;
             }
             ObjectAnimator animC = ObjectAnimator.ofFloat(mSwitchView, "rotation", start_rotaion, end_rotation);
-            ObjectAnimator animF = ObjectAnimator.ofFloat(mFlashLamp, "rotation", start_rotaion, end_rotation);
+            //ObjectAnimator animF = ObjectAnimator.ofFloat(mFlashLamp, "rotation", start_rotaion, end_rotation);
             AnimatorSet set = new AnimatorSet();
-            set.playTogether(animC, animF);
+            set.playTogether(animC/*, animF*/);
             set.setDuration(500);
             set.start();
             rotation = angle;
@@ -429,7 +429,7 @@ public class CameraInterface implements Camera.PreviewCallback {
             try {
                 mCamera.setPreviewCallback(null);
                 mSwitchView = null;
-                mFlashLamp = null;
+                //mFlashLamp = null;
                 mCamera.stopPreview();
                 //这句要在stopPreview后执行，不然会卡顿或者花屏
                 mCamera.setPreviewDisplay(null);
@@ -538,7 +538,7 @@ public class CameraInterface implements Camera.PreviewCallback {
 
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
 
 
         Camera.Size videoSize;
