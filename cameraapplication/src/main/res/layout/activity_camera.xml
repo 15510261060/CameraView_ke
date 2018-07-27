@@ -6,7 +6,7 @@
               android:layout_height="match_parent"
               tools:context="com.zxing.cameraapplication.CameraActivity">
 
-    <com.cjt2325.cameralibrary.JCameraView
+    <com.ke.cameralibrary.JCameraView
         android:id="@+id/jcameraview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.cjt2325.cameralibrary.util.DeviceUtil;
+import com.ke.cameralibrary.util.DeviceUtil;
 
 public class MainActivity extends AppCompatActivity {
     private final int GET_PERMISSION_REQUEST = 100; //权限申请自定义码
@@ -68,12 +68,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == 101) {
-            Log.i("CJT", "picture");
+            Log.i("TAG", "picture");
             String path = data.getStringExtra("path");
             photo.setImageBitmap(BitmapFactory.decodeFile(path));
         }
         if (resultCode == 102) {
-            Log.i("CJT", "video");
+            Log.i("TAG", "video");
             String path = data.getStringExtra("path");
         }
         if (resultCode == 103) {

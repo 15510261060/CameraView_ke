@@ -12,12 +12,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.cjt2325.cameralibrary.JCameraView;
-import com.cjt2325.cameralibrary.listener.ClickListener;
-import com.cjt2325.cameralibrary.listener.ErrorListener;
-import com.cjt2325.cameralibrary.listener.JCameraListener;
-import com.cjt2325.cameralibrary.util.DeviceUtil;
-import com.cjt2325.cameralibrary.util.FileUtil;
+import com.ke.cameralibrary.JCameraView;
+import com.ke.cameralibrary.listener.ClickListener;
+import com.ke.cameralibrary.listener.ErrorListener;
+import com.ke.cameralibrary.listener.JCameraListener;
+import com.ke.cameralibrary.util.DeviceUtil;
+import com.ke.cameralibrary.util.FileUtil;
 
 import java.io.File;
 
@@ -40,7 +40,7 @@ public class CameraActivity extends AppCompatActivity {
             @Override
             public void onError() {
                 //错误监听
-                Log.i("CJT", "camera error");
+                Log.i("TAG", "camera error");
                 Intent intent = new Intent();
                 setResult(103, intent);
                 finish();
@@ -68,7 +68,7 @@ public class CameraActivity extends AppCompatActivity {
             public void recordSuccess(String url, Bitmap firstFrame) {
                 //获取视频路径
                 String path = FileUtil.saveBitmap("JCamera", firstFrame);
-                Log.i("CJT", "url = " + url + ", Bitmap = " + path);
+                Log.i("TAG", "url = " + url + ", Bitmap = " + path);
                 Intent intent = new Intent();
                 intent.putExtra("path", path);
                 setResult(101, intent);
@@ -90,7 +90,7 @@ public class CameraActivity extends AppCompatActivity {
             }
         });
 
-        Log.i("CJT", DeviceUtil.getDeviceModel());
+        Log.i("TAG", DeviceUtil.getDeviceModel());
     }
 
     @Override

@@ -14,7 +14,6 @@
         android:layout_alignParentBottom="true"
         android:gravity="center"
         android:padding="16dp"
-        android:text="Create By CJT2325\n\nEmail 445263848@qq.com"
         android:textColor="#FFF"/>
 
     <ImageView

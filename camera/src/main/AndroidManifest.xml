@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cjt2325.cameralibrary">
+    package="com.ke.cameralibrary">
 
     <application android:allowBackup="true" android:label="@string/app_name"
         android:supportsRtl="true">
