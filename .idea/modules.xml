@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CameraView-master.iml" filepath="$PROJECT_DIR$/CameraView-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CameraView_ke.iml" filepath="$PROJECT_DIR$/CameraView_ke.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/camera/camera.iml" filepath="$PROJECT_DIR$/camera/camera.iml" />
       <module fileurl="file://$PROJECT_DIR$/cameraapplication/cameraapplication.iml" filepath="$PROJECT_DIR$/cameraapplication/cameraapplication.iml" />

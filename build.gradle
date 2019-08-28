@@ -20,3 +20,15 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+
+afterEvaluate {
+    testGitHooks.execute()
+}
+
+task testGitHooks(type: Copy) {
+    description 'Copies the git hooks from team-props/git-hooks to the .git folder.'
+    from("${rootDir}/git-hooks")
+    into("${rootDir}/.git/hooks")
+    include '**/*'
+}
