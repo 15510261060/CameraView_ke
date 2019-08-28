@@ -36,6 +36,7 @@ public class TypeButton extends View{
         button_radius = size / 2.0f;
         center_X = size / 2.0f;
         center_Y = size / 2.0f;
+
         mPaint = new Paint();
         path = new Path();
         strokeWidth = size / 50f;
