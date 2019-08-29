@@ -32,6 +32,7 @@ public class TypeButton extends View{
     public TypeButton(Context context, int type, int size) {
         super(context);
         this.button_type = type;
+
         button_size = size;
         button_radius = size / 2.0f;
         center_X = size / 2.0f;
